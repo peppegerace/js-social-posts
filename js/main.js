@@ -128,3 +128,45 @@ posts.forEach((post) => {
     // Stampo il div creato nel container
     container.appendChild(postElement);
 });
+
+
+// 4. Gestione del click "Mi Piace".
+const likeButtons = document.querySelectorAll(".js-like-button");
+//  creo un array vuoto dove inserire
+const likedPosts = [];
+
+// forEach per iterare su ciascun bottone "mi piace"
+likeButtons.forEach((button) => {
+  // metto in ascolto il pulsante
+  button.addEventListener("click", function (event) {
+
+    event.preventDefault();
+    // recupero l'attributo data-postid e lo converto in numero intero
+    const postId = parseInt(this.getAttribute("data-postid"));
+    console.log(postId)
+    const likeCounter = document.getElementById(`like-counter-${postId}`);
+      
+
+    // Trova il post corrispondente all'ID 
+    const post = posts.find((post) => post.id === postId);
+
+    if (post) {
+
+      if (!likedPosts.includes(postId)) {    
+
+        // Incrementa i like se il post non è già stato cliccato
+        post.likes++;
+        likeCounter.textContent = post.likes;
+        likedPosts.push(postId);
+        this.classList.add("like-button--liked");
+       } else {
+
+        // Decrementa i like se il post è stato già cliccato
+        post.likes--;
+        likeCounter.textContent = post.likes;
+        likedPosts.splice(likedPosts.indexOf(postId), 1);
+        this.classList.remove("like-button--liked");
+      }
+    }
+  });
+});
