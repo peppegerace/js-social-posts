@@ -102,7 +102,7 @@ posts.forEach((post) => {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>
-                    <div class="post-meta__time">${post.created}</div>
+                    <div class="post-meta__time">${formatDate(post.created)}</div>
                 </div>
             </div>
         </div>
@@ -170,3 +170,11 @@ likeButtons.forEach((button) => {
     }
   });
 });
+
+
+// Funzione per formattare la data stile italiano
+function formatDate(dateString) {
+  const [year, month, day] = dateString.split("-"); // Divide la data in giorno, mese e anno
+  return `${day}-${month}-${year}`;
+};
+
