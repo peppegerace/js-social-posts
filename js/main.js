@@ -132,7 +132,7 @@ posts.forEach((post) => {
 
 // 4. Gestione del click "Mi Piace".
 const likeButtons = document.querySelectorAll(".js-like-button");
-//  creo un array vuoto dove inserire
+//  creo un array vuoto dove inserire i post ai quali abbiamo messo il "like"
 const likedPosts = [];
 
 // forEach per iterare su ciascun bottone "mi piace"
@@ -143,7 +143,7 @@ likeButtons.forEach((button) => {
     event.preventDefault();
     // recupero l'attributo data-postid e lo converto in numero intero
     const postId = parseInt(this.getAttribute("data-postid"));
-    console.log(postId)
+    console.log(postId);
     const likeCounter = document.getElementById(`like-counter-${postId}`);
       
 
